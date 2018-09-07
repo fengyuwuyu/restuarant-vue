@@ -2,16 +2,18 @@
   <div class="icons">
     <swiper :options="swiperOption">
       <swiper-slide v-for="(page, index) of pages" :key="index">
-        <div
+        <router-link
+          tag="div"
+          :to="item.href"
           class="icon"
           v-for="item of page"
           :key="item.id"
         >
           <div class='icon-img'>
-            <img class='icon-img-content' :src='item.imgUrl' />
+            <img class='icon-img-content' :src='getResourceUrl(item)' />
           </div>
-          <p class="icon-desc">{{item.desc}}</p>
-        </div>
+          <p class="icon-title">{{item.title}}</p>
+        </router-link>
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
@@ -21,6 +23,82 @@
 <script>
 export default {
   name: 'HomeIcons',
+  props: {
+    list: {
+      type: Array,
+      default () {
+        return [{
+          id: 1,
+          imgUrl: '/img/canting.png',
+          title: '餐厅'
+        }, {
+          id: 2,
+          imgUrl: '/img/caipu.png',
+          title: '菜谱'
+        }, {
+          id: 3,
+          imgUrl: '/img/chaxun.png',
+          title: '查询'
+        }, {
+          id: 4,
+          imgUrl: '/img/chongzhi.png',
+          title: '充值'
+        }, {
+          id: 5,
+          imgUrl: '/img/dingdan.png',
+          title: '订单'
+        }, {
+          id: 6,
+          imgUrl: '/img/gongsi.png',
+          title: '公司'
+        }, {
+          id: 7,
+          imgUrl: '/img/pingjia.png',
+          title: '评价'
+        }, {
+          id: 8,
+          imgUrl: '/img/weixin.png',
+          title: '微信'
+        }, {
+          id: 9,
+          imgUrl: '/img/jiaoyi.png',
+          title: '交易'
+        }, {
+          id: 10,
+          imgUrl: '/img/caipu.png',
+          title: '菜谱'
+        }, {
+          id: 11,
+          imgUrl: '/img/chaxun.png',
+          title: '查询'
+        }, {
+          id: 12,
+          imgUrl: '/img/chongzhi.png',
+          title: '充值'
+        }, {
+          id: 13,
+          imgUrl: '/img/dingdan.png',
+          title: '订单'
+        }, {
+          id: 14,
+          imgUrl: '/img/gongsi.png',
+          title: '公司'
+        }, {
+          id: 15,
+          imgUrl: '/img/pingjia.png',
+          title: '评价'
+        }, {
+          id: 16,
+          imgUrl: '/img/weixin.png',
+          title: '微信'
+        }, {
+          id: 17,
+          imgUrl: '/img/jiaoyi.png',
+          title: '交易'
+        }]
+      }
+    }
+  },
   data () {
     return {
       swiperOption: {
@@ -28,77 +106,8 @@ export default {
           el: '.swiper-pagination'
         },
         autoplay: false,
-        loop: true
-      },
-      list: [{
-        id: 1,
-        imgUrl: '/img/canting.png',
-        desc: '餐厅'
-      }, {
-        id: 2,
-        imgUrl: '/img/caipu.png',
-        desc: '菜谱'
-      }, {
-        id: 3,
-        imgUrl: '/img/chaxun.png',
-        desc: '查询'
-      }, {
-        id: 4,
-        imgUrl: '/img/chongzhi.png',
-        desc: '充值'
-      }, {
-        id: 5,
-        imgUrl: '/img/dingdan.png',
-        desc: '订单'
-      }, {
-        id: 6,
-        imgUrl: '/img/gongsi.png',
-        desc: '公司'
-      }, {
-        id: 7,
-        imgUrl: '/img/pingjia.png',
-        desc: '评价'
-      }, {
-        id: 8,
-        imgUrl: '/img/weixin.png',
-        desc: '微信'
-      }, {
-        id: 9,
-        imgUrl: '/img/jiaoyi.png',
-        desc: '交易'
-      }, {
-        id: 10,
-        imgUrl: '/img/caipu.png',
-        desc: '菜谱'
-      }, {
-        id: 11,
-        imgUrl: '/img/chaxun.png',
-        desc: '查询'
-      }, {
-        id: 12,
-        imgUrl: '/img/chongzhi.png',
-        desc: '充值'
-      }, {
-        id: 13,
-        imgUrl: '/img/dingdan.png',
-        desc: '订单'
-      }, {
-        id: 14,
-        imgUrl: '/img/gongsi.png',
-        desc: '公司'
-      }, {
-        id: 15,
-        imgUrl: '/img/pingjia.png',
-        desc: '评价'
-      }, {
-        id: 16,
-        imgUrl: '/img/weixin.png',
-        desc: '微信'
-      }, {
-        id: 17,
-        imgUrl: '/img/jiaoyi.png',
-        desc: '交易'
-      }]
+        loop: false
+      }
     }
   },
   computed: {
@@ -151,7 +160,7 @@ export default {
           display: block
           margin: 0 auto
           height: 100%
-      .icon-desc
+      .icon-title
         position: absolute
         left: 0
         right: 0

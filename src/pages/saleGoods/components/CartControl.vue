@@ -1,35 +1,31 @@
 <template>
   <div class="cart-control">
-
-    <div class="cart-decrease" v-show="food.count>0" v-on:click.stop.prevent="decreaseCart" :transition="move">
+    <simple-fade>
+      <div class="cart-decrease" v-show="food.count>0" v-on:click.stop.prevent="decreaseCart"></div>
+    </simple-fade>
       <!-- 一个层平移一个层滚动， -->
-      <span class="inner icon-remove_circle_outline"></span>
-    </div>
+      <span class="iconfont inner">&#xe633;</span>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-    <div class="cart-add icon-add_circle" v-on:click.stop.prevent="addCart"></div>
-
+    <div class="cart-add iconfont" v-on:click.stop.prevent="addCart">&#xe632;</div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-
+import SimpleFade from '@/pages/common/animation/fade/SimpleFade'
 export default {
   name: 'CartControl',
+  components: {
+    SimpleFade
+  },
   props: {
     food: {
       type: Object
     }
   },
-  created () {
-    console.log(this.food)
-  },
   methods: {
     // 增加按钮数量
     addCart (event) {
-      if (!event._constructed) {
-        return
-      }
       if (!this.food.count) {
         Vue.set(this.food, 'count', 1)
       } else {
@@ -41,9 +37,6 @@ export default {
     },
     // 减少按钮数量
     decreaseCart (event) {
-      if (!event._constructed) {
-        return
-      }
       if (this.food.count) {
         this.food.count--
       }
@@ -57,7 +50,7 @@ export default {
     font-size: 0
     .cart-decrease
       display: inline-block
-      padding: 6px
+      padding: .03rem
       transition: all 0.4s linear
 
       &.move-transition
@@ -65,29 +58,29 @@ export default {
         transform: translate3d(0, 0, 0)
         .inner
           display: inline-block
-          line-height: 24px
-          font-size: 24px
+          line-height: .48rem
+          font-size: .48rem !important
           color: rgb(0, 160, 220)
           transition: all 0.4s linear
           transform: rotate(0)
       &.move-enter, &.move-leave
         opacity: 0
-        transform: translate3d(24px, 0, 0)
+        transform: translate3d(.48rem, 0, 0)
         .inner
           transform: rotate(180deg)
     .cart-count
       display: inline-block
       vertical-align: top
-      width: 12px
-      padding-top: 6px
-      line-height: 24px
+      width: .24rem
+      padding-top: .03rem
+      line-height: .48rem
       text-align: center
-      font-size: 10px
+      font-size: .2rem
       color: rgb(147, 153, 159)
     .cart-add
       display: inline-block
-      padding: 6px
-      line-height: 24px
-      font-size: 24px
+      padding: .03rem
+      line-height: .48rem
+      font-size: .48rem
       color: rgb(0, 160, 220)
 </style>

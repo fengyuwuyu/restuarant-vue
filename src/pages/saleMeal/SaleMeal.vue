@@ -1,34 +1,35 @@
 <template>
   <div>
-    <week-meal-header :title="headerTitle"></week-meal-header>
-    <!--<diningroom-select></diningroom-select>-->
-    <week-select></week-select>
+    <week-meal-header :title="headerTitle" :path="headerPath"></week-meal-header>
+    <goods :saleWeek="getWeekDay()" :weekMeal="1"></goods>
   </div>
 </template>
 
 <script>
 import WeekMealHeader from '@/pages/common/Header'
-import DiningroomSelect from './components/DiningroomSelect'
-import WeekSelect from './components/WeekSelect'
+import Goods from '../saleGoods/Goods'
 import axios from 'axios'
 import { mapMutations } from 'vuex'
 export default {
   name: 'WeekMeal',
   components: {
     WeekMealHeader,
-    DiningroomSelect,
-    WeekSelect
+    Goods
   },
   data () {
     return {
-      headerTitle: '周工作餐'
+      headerTitle: '在线订餐',
+      headerPath: '/',
+      dishes: null,
+      timeIntervalList: null,
+      dishesCategoryList: null
     }
   },
   methods: {
     changeFunc (idx) {
+      console.log(idx)
     },
     getWeekMealData () {
-      console.log(this.$route.params.id)
       axios.get('/api/dishes/getDishesByDiningroomId?diningroomId=' + this.$route.params.id).then(this.handleGetWeekMeal)
     },
     handleGetWeekMeal (res) {
@@ -40,8 +41,12 @@ export default {
     },
     ...mapMutations(['changeDiningroom'])
   },
-  mounted () {
+  created () {
     this.getWeekMealData()
+  },
+  mounted () {
+  },
+  activated () {
   }
 }
 </script>

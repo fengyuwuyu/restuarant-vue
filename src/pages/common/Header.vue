@@ -1,9 +1,7 @@
 <template>
-  <div class="header">
+  <div class="header" v-on:click="back">
     {{title}}
-    <router-link :to="path">
       <div class="iconfont header-back">&#xe604;</div>
-    </router-link>
   </div>
 </template>
 
@@ -11,8 +9,12 @@
 export default {
   name: 'CommonHeader',
   props: {
-    title: String,
-    path: String
+    title: String
+  },
+  methods: {
+    back () {
+      this.$router.back(-1)
+    }
   }
 }
 </script>

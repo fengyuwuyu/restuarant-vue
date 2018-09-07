@@ -118,6 +118,7 @@ export default {
     // 总价
     totalPrice () {
       let total = 0
+      console.log(this.selectFoods)
       this.selectFoods.forEach((food) => {
         total += food.price * food.count
       })
@@ -189,6 +190,7 @@ export default {
     },
     // 切换购物车详情页toggleList
     toggleList () {
+      console.log(this.totalCount)
       if (!this.totalCount) {
         return
       }

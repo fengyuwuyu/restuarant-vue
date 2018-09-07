@@ -3,9 +3,9 @@ import Router from 'vue-router'
 import Home from '@/pages/home/Home'
 import Contacts from '@/pages/contacts/Contacts'
 import WeekMeal from '@/pages/weekMeal/WeekMeal'
+import SaleMeal from '@/pages/saleMeal/SaleMeal'
 import DiningroomEvaluate from '@/pages/diningroomEvaluate/DiningroomEvaluate'
 import DiningroomList from '@/pages/diningroomList/DiningroomList'
-import Goods from '@/pages/goods/Goods'
 import Demo from '@/pages/demo/Demo'
 
 Vue.use(Router)
@@ -25,21 +25,21 @@ export default new Router({
       name: 'Contacts',
       component: Contacts
     }, {
-      path: '/weekMeal',
+      path: '/weekMeal/:id',
       name: 'WeekMeal',
       component: WeekMeal
+    }, {
+      path: '/saleMeal/:id',
+      name: 'SaleMeal',
+      component: SaleMeal
     }, {
       path: '/diningroomEvaluate',
       name: 'DiningroomEvaluate',
       component: DiningroomEvaluate
     }, {
-      path: '/diningroomList',
+      path: '/diningroomList/:id',
       name: 'DiningroomList',
       component: DiningroomList
-    }, {
-      path: '/goods',
-      name: 'Goods',
-      component: Goods
     }
   ]
 })

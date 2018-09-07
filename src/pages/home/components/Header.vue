@@ -1,25 +1,56 @@
 <template>
-  <div class="header">
-    <img class="header-img" src="http://img1.qunarzz.com/piao/fusion/1806/1c/4847ea66072c7b02.jpg_750x200_c32457fb.jpg"/>
+  <div class="wrapper">
+    <swiper :options="swiperOption" v-if="showSwiper">
+      <swiper-slide v-for="item of list" :key="item.id">
+        <img class="swiper-img" :src="getResourceUrl(item)" />
+      </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  props: {
+    list: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  },
+  data () {
+    return {
+      swiperOption: {
+        pagination: {
+          el: '.swiper-pagination'
+        },
+        autoplay: false,
+        loop: true
+      }
+    }
+  },
+  computed: {
+    showSwiper () {
+      return this.list.length
+    }
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
-  @import "~styles/varibles.styl"
-  .header
-    z-index: 3
+  .wrapper >>> .swiper-pagination-bullet-active
+    background: #eee
+  .wrapper
+    overflow: hidden
     position: fixed
     top: 0
     left: 0
     right: 0
+    z-index: 3
     height: 0
     padding-bottom 26.67%
-    .header-img
+    .swiper-img
       width: 100%
 </style>
