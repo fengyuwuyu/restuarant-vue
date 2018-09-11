@@ -52,9 +52,8 @@ export default {
       return '/api/resource/download?id=' + item.resourceId + '&hash=' + item.resourceHash
     },
     getDiningroomPath (diningroomId) {
-      console.log(this.$route.params.id)
       if (this.$route.params.id && this.$route.params.id === '2') {
-        return '/saleMeal/' + diningroomId
+        return '/seller/' + diningroomId + '/goods'
       }
       return '/weekMeal/' + diningroomId
     }

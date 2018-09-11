@@ -1,12 +1,8 @@
 <template>
   <div class="demo">
-    <ul>
-      <router-link class="demo-item" tag="li" to="/componentDevelop">组件化开发</router-link>
-      <router-link class="demo-item" tag="li" to="/componentInteract">父子组件传值</router-link>
-    </ul>
-    <div class="template">
-      <input :id="id" type="text" :disabled="isDisabled" value="test" />
-    </div>
+    <router-link class="item" to="/view1">组件化开发</router-link>
+    <router-link class="item" to="/view2">父子组件传值</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -25,12 +21,10 @@ export default {
 <style lang="stylus" scoped>
   @import "~styles/varibles.styl"
   .demo
-    background: #ffffff
-    .demo-item
-      height .6rem
-      line-height .6rem
-    .template
-      margin-top 30px
-      input
-        border 1px solid #000000
+    display flex
+    height .8rem
+    .item
+      flex 1
+      height .8rem
+      line-height .8rem
 </style>

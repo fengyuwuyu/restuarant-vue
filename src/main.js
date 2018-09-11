@@ -32,6 +32,7 @@ new Vue({
 })
 
 Vue.prototype.getResourceUrl = function (item) {
+  console.log(item)
   return '/api/resource/download?id=' + item.id + '&hash=' + item.hash
 }
 

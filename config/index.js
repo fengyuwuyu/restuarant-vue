@@ -18,7 +18,7 @@ module.exports = {
         }
       },
       '/api': {
-        target: 'http://172.16.2.154:8888'
+        target: 'http://127.0.0.1:8888'
       }
     },
 
